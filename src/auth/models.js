@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     },
     ency_password: String,
     salt: String,
+    tokens:[{token:{
+            type:String,
+            required:true,
+    }}]
 },{timestamps:true});
 
 userSchema.virtual("password").set(function (plainpassword) {
