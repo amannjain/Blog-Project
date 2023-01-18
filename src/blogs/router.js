@@ -1,10 +1,11 @@
 const express = require("express");
+const { isAuthenticated } = require("../helper/utils");
 const blogRouter = express.Router();
 
-const {writeBlog,deleteBlog,updateBlog,readBlog} = require("./controllers");
+const {createBlog,deleteBlog,updateBlog,readBlog} = require("./controllers");
 
 
-blogRouter.post("/writeblog",writeBlog);
+blogRouter.post("/createblog",isAuthenticated,createBlog);
 blogRouter.post("/deleteblog",deleteBlog);
 blogRouter.post("/updateblog",updateBlog);
 blogRouter.get("/readblog",readBlog);

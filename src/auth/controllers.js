@@ -1,5 +1,6 @@
 const {User} = require("./models");
 const jwt = require("jsonwebtoken");
+const Key = "sdcjhbsdkuyjhhsj-jkiubsdiun";
 
 const register = async(req,res)=>{
     const {name,username,password} = req.body;
@@ -41,7 +42,7 @@ const loginMiddleware = async(req,res,next)=>{
     if(!user.authenticate(password)){
         return res.json({status: "Error", message: "You entered wrong password"});
     }
-    var token = jwt.sign({_id:user.id},user.salt);
+    var token = jwt.sign({_id:user.id},Key);
     req.body.token = token;
     next();
 }
@@ -59,4 +60,4 @@ const reset = async(req,res)=>{
     return res.json({status: "Done", user});
 };
 
-module.exports = {register,login,reset,loginMiddleware};
+module.exports = {register,login,reset,loginMiddleware,Key};

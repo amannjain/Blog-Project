@@ -1,4 +1,7 @@
-const writeBlog = async(req,res)=>{
+const {Blog} = require("./models");
+const createBlog = async(req,res)=>{
+    var blog = new Blog(req.body);
+    await blog.save();
     return res.json({status: "Done"})
 };
 
@@ -14,4 +17,4 @@ const readBlog = async(req,res)=>{
     return res.json({status: "Done"})
 };
 
-module.exports = {writeBlog,deleteBlog,updateBlog,readBlog};
+module.exports = {createBlog,deleteBlog,updateBlog,readBlog};
