@@ -14,7 +14,8 @@ const updateBlog = async(req,res)=>{
 };
 
 const readBlog = async(req,res)=>{
-    return res.json({status: "Done"})
+    var blogs = await Blog.find({user_id: req.user}).populate("user");
+    return res.json({blogs: blogs});
 };
 
 module.exports = {createBlog,deleteBlog,updateBlog,readBlog};
